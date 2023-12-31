@@ -23,7 +23,7 @@ class Simulation:
 
 
 if __name__ == '__main__':
-    sim = Simulation(first_car=Car(x=40, y=40, speed=5,max_speed=100, d_x=1, d_y=0),
+    sim = Simulation(first_car=Car(x=40, y=40, speed=1,max_speed=10, d_x=1, d_y=0),
                      map=Map([shapely.LinearRing(
                          [(35, 50), (270, 45), (440, 130), (525, 235)]),shapely.LinearRing(
                          [(70, 55), (265, 55), (430, 135), (490, 205)])]))

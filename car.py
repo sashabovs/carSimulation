@@ -34,16 +34,16 @@ class Car:
         self.car_angle += angle
 
     def speedUp(self):
-        if self.max_speed < self.speed + 10:
+        if self.max_speed < self.speed + 1:
             self.speed = self.max_speed
         else:
-            self.speed += 10
+            self.speed += 1
 
     def speedDown(self):
-        if self.speed < 10:
+        if self.speed < 1:
             self.speed = 0
         else:
-            self.speed -= 10
+            self.speed -= 1
 
     def changeTrackUp(self):
         self.cur_track += 1
