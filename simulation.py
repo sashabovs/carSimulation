@@ -13,8 +13,10 @@ class Simulation:
         self.visualisation = Visualisation(map=map, car=first_car)
 
     def loop(self) -> None:
+        self.map.incr_light()
         self.first_car.calcNextStep(self.map)
         self.first_car.move()
+
 
     def main(self) -> None:
         self.loop()
