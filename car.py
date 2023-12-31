@@ -92,10 +92,41 @@ class Car:
         else:
             self.rotateLeft(min(dist*np.pi/200, np.pi/4))
 
-        if (temp[0][1] - self.x)**2 + (temp[1][1] - self.y)**2 < 100:
+
+        dist_to_node = (temp[0][1] - self.x) ** 2 + (temp[1][1] - self.y) ** 2
+        if dist_to_node < 100:
             self.cur_chunk += 1
             if self.cur_chunk >= len(map.track_lines[self.cur_track]):
                 self.cur_chunk = 0
+
+
+
+
+
+
+        #////////////////////////////////////////////////
+        if self.cur_chunk == 0:
+            prev_chunk = len(map.track_lines[self.cur_track]) - 1
+        else:
+            prev_chunk = self.cur_chunk - 1
+
+        prev_node = map.track_lines[self.cur_track][prev_chunk].xy
+        dist_to_prev_node = (self.x - prev_node[0][1])**2 + (self.y - prev_node[1][1])**2
+        if dist_to_node < 3100 or dist_to_prev_node < 100:
+            self.desired_speed = 1
+        else:
+            self.desired_speed = self.max_speed
+
+
+
+        # for pos, light in map.traffic_lights[self.cur_track].items():
+        #     dist_to_light = (self.x - pos[0])**2 + (self.y - pos[1])**2
+        #     if dist_to_light < 3100 and light > 50:
+        #         self.desired_speed = 0
+        #     elif dist_to_light < 3100 and light <= 50:
+        #         self.desired_speed = self.max_speed
+
+
 
 
 
