@@ -99,11 +99,7 @@ class Car:
             if self.cur_chunk >= len(map.track_lines[self.cur_track]):
                 self.cur_chunk = 0
 
-
-
-
-
-
+        self.desired_speed = self.max_speed
         #////////////////////////////////////////////////
         if self.cur_chunk == 0:
             prev_chunk = len(map.track_lines[self.cur_track]) - 1
@@ -119,12 +115,15 @@ class Car:
 
 
 
-        # for pos, light in map.traffic_lights[self.cur_track].items():
-        #     dist_to_light = (self.x - pos[0])**2 + (self.y - pos[1])**2
-        #     if dist_to_light < 3100 and light > 50:
-        #         self.desired_speed = 0
-        #     elif dist_to_light < 3100 and light <= 50:
-        #         self.desired_speed = self.max_speed
+        for pos, light in map.traffic_lights[self.cur_track].items():
+            dist_to_light = (self.x - pos[0])**2 + (self.y - pos[1])**2
+            if light > 50:
+                if dist_to_light < 15:
+                    self.desired_speed = 0
+                elif dist_to_light < 3100:
+                    self.desired_speed = 2
+
+
 
 
 
