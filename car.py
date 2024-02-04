@@ -117,7 +117,12 @@ class Car:
 
         for pos, light in map.traffic_lights[self.cur_track].items():
             dist_to_light = (self.x - pos[0])**2 + (self.y - pos[1])**2
-            if light > 50:
+
+            vector_to_light = [self.x - pos[0] , self.y - pos[1]]
+
+            angle_to_light = vector_to_light[0]*car_vector[0] + vector_to_light[1]*car_vector[1]
+
+            if light > 50 and angle_to_light < 0:
                 if dist_to_light < 15:
                     self.desired_speed = 0
                 elif dist_to_light < 3100:
